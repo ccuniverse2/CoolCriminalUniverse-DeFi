@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="CoolCriminalUniverse Official DeFi, NFTs, Tokenomics, and Dapp Projects – Trade, Collect, Celebrate!">
+  <title>CoolCriminalUniverse: NFTs, DeFi & Meme Tokens</title>
+  <link rel="icon" href="https://i.ibb.co/G4C8Bc0W/CCUM.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@600&family=Inter:wght@400;700;900&display=swap');
+    :root {
+      --primary: #f1f8ff;
+      --accent: #ffb300;
+      --bg: #0a1018;
+      --section-bg: #131a23;
+      --card-bg: #181f2b;
+      --border: #222b36;
+      --radius: 18px;
+      --shadow: 0 2px 32px 0 rgb(0 0 0 / 70%);
+      --gradient: linear-gradient(90deg, #0b30581c 0%, #251d3f20 100%);
+      --highlight: #00ffd0;
+      --link: #ffb300;
+      --link-hover: #00ffd0;
+      --table-row: #181f2b;
+      --table-alt: #232b36;
+      --heading: #fff;
+      --banner-glow: 0 0 40px 8px #00ffd055;
+      --blur-bg: rgba(20,32,44,0.85);
+      --particle1: #ffe25977;
+      --particle2: #00ffd077;
+      --particle3: #ffb30033;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      min-height: 100vh;
+      font-size: 18px;
+      scroll-behavior: smooth;
+      transition: background 0.2s, color 0.2s;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+        /* NAVBAR */
+    .navbar-main {
+      width: 100vw;
+      background: var(--card-bg);
+      box-shadow: 0 2px 18px #000a;
+      padding: 0;
+      margin: 0;
+      border-bottom: 2.5px solid var(--highlight);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: background .2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+    }
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.2em 1.4em;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.85em;
+      user-select: none;
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      box-shadow: 0 2px 18px #00ffd055, 0 0 6px #ffb30055;
+      background: #fff;
+      transition: transform 0.18s;
+    }
+    .logo-area:hover .logo-img {
+      transform: scale(1.11) rotate(-4deg);
+      box-shadow: 0 0 38px 8px #00ffd088,0 0 16px #ffb30077;
+    }
+    .logo-text {
+      font-family: 'Press Start 2P', 'Fira Code', 'Inter', monospace;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      background: linear-gradient(90deg, #00ffd0 10%, #ffe259 60%, #ffb300 100%);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: brightness(1.2) drop-shadow(0 2px 14px #00ffd044);
+      text-shadow: 0 2px 20px #ffb30044, 0 0 6px #00ffd044;
+      transition: filter 0.18s;
+      text-decoration: none;
+      padding: 0 0.1em;
+    }
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.8em;
+    }
+    .navbar-link {
+      color: var(--highlight);
+      font-family: 'Fira Code', monospace;
+      font-size: 1.08em;
+      font-weight: 700;
+      background: none;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      padding: 0.6em 1em;
+      border-radius: 1.2em;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 10px #00ffd022;
+      cursor: pointer;
+      letter-spacing: 0.8px;
+      margin: 0;
+    }
+    .navbar-link:hover, .navbar-link.active {
+      background: var(--highlight);
+      color: #181f2b;
+      text-shadow: 0 2px 10px #fff6;
+      font-weight: 900;
+      filter: brightness(1.2);
+    }
+    .navbar-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 201;
+      margin-left: 1em;
+    }
+    .navbar-hamburger span {
+      display: block;
+      width: 26px;
+      height: 4px;
+      margin: 3.5px 0;
+      border-radius: 2px;
+      background: var(--highlight);
+      box-shadow: 0 2px 8px #00ffd088;
+      transition: 0.3s;
+    }
+    .navbar-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 7px);
+    }
+    .navbar-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .navbar-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -7px);
+    }
+    .navbar-menu-mobile {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 65px;
+      right: 1em;
+      width: 210px;
+      background: var(--section-bg);
+      border-radius: 1em;
+      box-shadow: 0 5px 40px #00ffd055, 0 2px 10px #000c;
+      z-index: 200;
+      padding: 1em 0.5em;
+      animation: fadeInMenu 0.23s;
+    }
+    .navbar-menu-mobile .navbar-link {
+      display: block;
+      width: 100%;
+      margin: 0.5em 0;
+      text-align: left;
+      font-size: 1em;
+    }
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(-18px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 900px) {
+      .navbar-container { padding: 0.2em 0.5em; }
+      .logo-text { font-size: 1.08rem; }
+      body { padding-top: 60px; }
+    }
+    @media (max-width: 650px) {
+      .navbar-main { min-height: 54px; }
+      .navbar-menu { display: none; }
+      .navbar-hamburger { display: flex; }
+      .navbar-menu-mobile { display: flex; }
+      .logo-img { width: 36px; height: 36px; }
+      body { padding-top: 54px; }
+    }
+    @media (max-width: 420px) {
+      .logo-text { font-size: 0.82rem; }
+    }
+    /* ...rest of your previous styles... */
+    header, section, footer {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      box-sizing: border-box;
+      padding: 2rem 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+    header {
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      background: var(--gradient);
+      color: #f9f6ed;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      background-size: 400% 400%;
+      animation: bgMove 9s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sd {
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      background: var(--gradient);
+      color: #f9f6ed;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      background-size: 400% 400%;
+      animation: bgMove 9s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight {
+      background: var(--highlight);
+      color: #181f2b;
+      border-radius: 1em;
+      padding: 0 0.6em;
+      font-weight: 900;
+      margin: 0 0.2em;
+      letter-spacing: 1.5px;
+      box-shadow: 0 2px 18px var(--highlight);
+      text-shadow: 0 2px 8px #fff9;
+    }
+    .trade-link {
+      display: inline-block;
+      margin: 1.5rem auto 0;
+      padding: 0.8em 2.1em;
+      background: var(--accent);
+      color: #181f2b;
+      font-size: 1.13em;
+      border-radius: 2.5em;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 32px 0 var(--accent), 0 0 10px var(--highlight);
+      border: 2px solid var(--highlight);
+      text-shadow: 0 2px 10px #fff6;
+      filter: brightness(1.15);
+    }
+    .trade-link:hover {
+      background: var(--highlight);
+      color: #181f2b;
+      box-shadow: 0 0 50px 5px var(--highlight), 0 2px 32px 0 var(--accent);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--heading);
+      text-shadow: 0 2px 20px var(--highlight), 0 0 8px var(--accent);
+      filter: brightness(1.2);
+    }
+    .section-sub {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.22rem;
+      color: #ffe259;
+      text-shadow: 0 2px 8px #000b;
+    }
+    .banner-img {
+      width: 100%;
+      max-width: 900px;
+      border-radius: var(--radius);
+      margin: 2rem auto 1rem;
+      display: block;
+      box-shadow: var(--banner-glow), 0 2px 18px #000b;
+      border: 2px solid var(--highlight);
+      background: var(--section-bg);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .banner-img:hover {
+      transform: scale(1.02) rotate(1.5deg);
+      box-shadow: 0 0 70px 12px var(--accent), 0 2px 18px #000b;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0 3rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.3rem;
+      max-width: 340px;
+      flex: 1 1 290px;
+      min-width: 240px;
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 1rem;
+      backdrop-filter: blur(2px);
+      transition: transform 0.17s, box-shadow 0.17s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.025);
+      box-shadow: 0 0 32px 8px var(--accent), var(--shadow);
+      border-color: var(--highlight);
+      background: #202b3a;
+    }
+    .card h3 {
+      font-size: 1.17rem;
+      margin: 0 0 0.3rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-shadow: 0 2px 8px var(--accent);
+    }
+    .card a {
+      color: var(--link);
+      font-weight: 700;
+      word-break: break-all;
+      text-decoration: underline;
+      transition: color .2s;
+    }
+    .card a:hover {
+      color: var(--link-hover);
+    }
+    .table {
+      width: 100%;
+      overflow-x: auto;
+      margin: 2rem 0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--card-bg);
+      border-collapse: collapse;
+      font-size: 1rem;
+      border: 1.5px solid var(--border);
+      backdrop-filter: blur(2px);
+    }
+    .table th, .table td {
+      padding: 0.9em 1em;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .table th {
+      background: var(--section-bg);
+      color: var(--accent);
+      font-size: 1.08em;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 10px var(--accent);
+      border-bottom: 2px solid var(--border);
+    }
+    .table tr {
+      background: var(--table-row);
+      transition: background 0.15s;
+    }
+    .table tr:nth-child(even) { background: var(--table-alt); }
+    .table tr:hover { background: #222b36; }
+    .table tr:last-child td { border-bottom: none; }
+    .table a { color: var(--highlight); font-weight: 700; }
+    .table a:hover { color: var(--accent); }
+    .nft-links, .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2em 2em;
+      justify-content: center;
+      margin: 2em 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 1.05em;
+    }
+    .nft-links li, .social-links li {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+    }
+    .nft-links a, .social-links a {
+      color: var(--highlight);
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .2s, text-shadow .2s;
+      text-shadow: 0 2px 10px var(--highlight);
+    }
+    .nft-links a:hover, .social-links a:hover {
+      color: var(--accent);
+      text-shadow: 0 2px 10px var(--accent);
+      text-decoration: underline;
+    }
+    .about {
+      background: var(--section-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2em 1em;
+      margin: 2em 0;
+      text-align: center;
+      font-size: 1.18em;
+      color: #ffe259;
+      text-shadow: 0 2px 18px var(--accent);
+      border: 2px solid var(--highlight);
+      backdrop-filter: blur(3px);
+    }
+    .about b {
+      color: var(--accent);
+      text-shadow: 0 2px 8px var(--accent);
+      font-size: 1.12em;
+      letter-spacing: 1px;
+    }
+    .hashtags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.9em;
+      margin: 1.8em 0 1.1em;
+      font-size: 1.13em;
+    }
+    .hashtags code {
+      padding: 0.4em 0.9em;
+      background: #090e13;
+      border: 2px solid var(--highlight);
+      border-radius: 2em;
+      font-size: 1em;
+      color: var(--highlight);
+      font-family: 'Fira Code', monospace;
+      box-shadow: 0 2px 10px var(--highlight);
+      letter-spacing: 2px;
+      font-weight: 700;
+      transition: background 0.2s, color 0.2s;
+    }
+    .vibes {
+      text-align: center;
+      font-size: 2.2em;
+      margin-top: 0;
+      margin-bottom: 1.6em;
+      text-shadow: 0 2px 20px var(--accent), 0 0 8px var(--highlight);
+      letter-spacing: 0.1em;
+    }
+    details {
+      max-width: 400px;
+      margin: 1.7em auto 0;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.3em 1em;
+      font-size: 1.07em;
+      cursor: pointer;
+      color: var(--accent);
+      border: 2px solid var(--highlight);
+      text-align: center;
+      backdrop-filter: blur(2px);
+      transition: box-shadow .2s, border-color .2s;
+    }
+    details[open] {
+      box-shadow: 0 0 30px 6px var(--highlight), var(--shadow);
+      border-color: var(--accent);
+    }
+    details[open] summary {
+      font-weight: 800;
+      color: var(--highlight);
+    }
+    summary {
+      outline: none;
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 1.07em;
+      padding-bottom: 0.3em;
+      text-shadow: 0 2px 10px var(--accent);
+    }
+    .donate {
+      background: var(--section-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.7em 1em;
+      margin: 2em 0;
+      text-align: center;
+      font-size: 1.12em;
+      color: #ffe259;
+      border: 2px solid var(--highlight);
+      backdrop-filter: blur(2px);
+    }
+    .donate b {
+      color: var(--accent);
+      text-shadow: 0 2px 8px var(--accent);
+    }
+    .donate-addresses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.2em;
+      margin-top: 1.5em;
+      font-size: 1.01em;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .donate-addresses span {
+      display: block;
+      color: var(--highlight);
+      font-size: 0.98em;
+      font-weight: 700;
+      margin-bottom: 0.2em;
+      text-shadow: 0 2px 8px var(--highlight);
+    }
+    .donate-addresses code {
+      font-family: 'Fira Code', monospace;
+      background: #090e13;
+      border-radius: 0.7em;
+      padding: 0.4em 0.6em;
+      font-size: 1em;
+      word-break: break-all;
+      color: var(--accent);
+      border: 1.5px solid var(--highlight);
+      box-shadow: 0 2px 8px var(--highlight);
+      letter-spacing: 1px;
+    }
+    .thanks {
+      text-align: center;
+      margin: 3em 0 2em;
+      color: var(--highlight);
+      font-size: 1.22em;
+      text-shadow: 0 2px 10px var(--highlight), 0 2px 8px var(--accent);
+    }
+    .typing-svg {
+      display: block;
+      margin: 2.5em auto 1.5em;
+      max-width: 700px;
+      width: 100%;
+      filter: drop-shadow(0 0 10px var(--highlight));
+      border-radius: 8px;
+    }
+    /* Chart widget */
+    .chart-section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+     
+      text-align: center;
+
+      border: 2px solid var(--highlight);
+      position: relative;
+      overflow: visible;
+
+      width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 2rem 1.2rem;
+    position: relative;
+    z-index: 2;
+    }
+    .chart-section-title {
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.2em;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 12px var(--highlight);
+    }
+    #price-chart-widget-container {
+      width: 100%;
+      max-width: 1000px;
+      min-height: 450px;
+      height: 80vh;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      background: #0d2035;
+      box-shadow: 0 2px 30px #00ffd055;
+      position: relative;
+      z-index: 10;
+    }
+    /* Responsive */
+    @media (max-width: 750px) {
+      .section-title { font-size: 1.4rem; }
+      .card { max-width: 100%; min-width: 90vw; }
+      .table th, .table td { font-size: 0.97em; padding: 0.6em 0.5em; }
+      .donate-addresses { grid-template-columns: 1fr; }
+      .about, .donate { font-size: 1em; }
+      .chart-section-title { font-size: 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      header, section, footer { padding: 1.1rem 0.3rem; }
+      .banner-img { margin: 1.2rem auto 0.3rem; }
+      #price-chart-widget-container { min-height: 320px; }
+    }
+    /* Decorative glowing particles (optional) */
+    .particles {
+      pointer-events: none;
+      position: fixed;
+      z-index: 1;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      overflow: hidden;
+      opacity: 0.21;
+      mix-blend-mode: lighten;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(5px);
+      animation: float 18s linear infinite;
+    }
+    .p1 { background: radial-gradient(circle, var(--particle1), transparent 80%); }
+    .p2 { background: radial-gradient(circle, var(--particle2), transparent 80%); }
+    .p3 { background: radial-gradient(circle, var(--particle3), transparent 80%); }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1);}
+      50% { transform: translateY(-30vh) scale(1.18);}
+      100% { transform: translateY(0) scale(1);}
+    }
+    footer {
+      text-align: center;
+      font-size: 1.07em;
+      color: #ffe259cc;
+      background: none;
+      padding: 2em 1em 1em;
+      margin-top: 2em;
+      text-shadow: 0 2px 10px var(--accent);
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      border-top: 2px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative particles -->
+  <div class="particles">
+    <div class="particle p1" style="top:20%;left:15%;width:70px;height:70px;animation-delay:0s;"></div>
+    <div class="particle p2" style="top:60%;left:75%;width:45px;height:45px;animation-delay:3s;"></div>
+    <div class="particle p3" style="top:85%;left:30%;width:32px;height:32px;animation-delay:5s;"></div>
+    <div class="particle p2" style="top:10%;left:55%;width:55px;height:55px;animation-delay:7s;"></div>
+    <div class="particle p1" style="top:40%;left:85%;width:25px;height:25px;animation-delay:9s;"></div>
+    <div class="particle p3" style="top:78%;left:3%;width:40px;height:40px;animation-delay:11s;"></div>
+  </div>
+    <!-- NAVBAR -->
+  <nav class="navbar-main">
+    <div class="navbar-container">
+      <a class="logo-area" href="#home">
+        <img class="logo-img" src="https://i.ibb.co/G4C8Bc0W/CCUM.png" alt="CoolCriminal Logo" />
+        <span class="logo-text">CoolCriminal</span>
+      </a>
+      <div class="navbar-menu" id="navbar-menu">
+        <a href="#docs" class="navbar-link">Docs</a>
+         
+        <a href="#latest-release" class="navbar-link">Latest Release</a>
+        <a href="#nfts" class="navbar-link">NFTs</a>
+        <a href="#tokens" class="navbar-link">Tokens</a>
+        
+      </div>
+      <button class="navbar-hamburger" id="navbar-hamburger" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar-menu-mobile" id="navbar-menu-mobile" style="display:none;">
+       <a href="#latest-release" class="navbar-link">Latest Release</a>
+        <a href="#nfts" class="navbar-link">NFTs</a>
+        <a href="#tokens" class="navbar-link">Tokens</a>
+      </div>
+    </div>
+  </nav>
+  <script>
+    // Toggle mobile menu
+    const navHamburger = document.getElementById('navbar-hamburger');
+    const navMenuMobile = document.getElementById('navbar-menu-mobile');
+    navHamburger.addEventListener('click', function() {
+      this.classList.toggle('open');
+      if (navMenuMobile.style.display === 'flex') {
+        navMenuMobile.style.display = 'none';
+      } else {
+        navMenuMobile.style.display = 'flex';
+      }
+    });
+    // Hide menu when a link is clicked
+    Array.from(navMenuMobile.getElementsByClassName('navbar-link')).forEach(link => {
+      link.addEventListener('click', () => {
+        navMenuMobile.style.display = 'none';
+        navHamburger.classList.remove('open');
+      });
+    });
+  </script>
+<header>
+
+  <section> 
+     <h1>🕶️🎉 Welcome to <span class="highlight">CoolCriminalUniverse</span> Launchpad! 🎉🕶️</h1>
+    <img src="https://i.ibb.co/G4C8Bc0W/CCUM.png" alt="CoolCriminals Logo" />
+    <h2>The Official IDO, ICO, DAO and NFTs Launchpad</h2>
+    <a class="trade-link" href="https://opensea.io/CoolCriminals" target="_blank">Explore The Craziest NFTs Collections !!!</a>
+  </section>
+</header>
+  <section>
+    <h2 class="section-title">🕶️  Join !!! CoolCriminal <span class="highlight">SEI Network</span> NFTs 🕶️</h2>
+    
+    <img class="banner-img" src="https://i.ibb.co/6cRGLYBJ/CCUhq010.png" alt="CoolCriminals Banner" />
+     <h2 class="section-title">
+      <a class="trade-link" href="https://opensea.io/CoolCriminals" target="_blank">Explore On Opensea !!!</a>
+
+     </h2>
+  </section>
+
+  <section id="latest-release">
+    <h2 class="section-title">🎉 🎉  Latest Release 🎉 🎉 </h2>
+    <div class="cards">
+      <div class="card">
+        <h3>CCUM - CoolCriminalUniverse MEME</h3>
+         <img src="https://i.ibb.co/G4C8Bc0W/CCUM.png" alt="CoolCriminals Logo" />
+        <a href="https://pump.fun/coin/BSci6qLkhSWTqw29dwnEQAzLfZWuTdoR6pTBjty4pump" target="_blank">Explore on Pump.Fun</a>
+        <p> Official MEME Coin from CoolCriminal Universe</p>
+      </div>
+      <div class="card">
+        <h3>IBCM - <span>InnovativeBusinessCoin MEME</span></h3>
+        <img src="https://i.ibb.co/j9KNXPTx/IBCM.png" alt="IBCM Logo" />
+        <a href="https://pump.fun/coin/AmjcRH341ppCZmCzvdHVf3z1NwL3pAAKvqJGPHbLJKRf" target="_blank">Trade on Pump Fun</a>
+        <p> Direct Trade & Pump </p>
+      </div>
+      <div class="card">
+        <h3>🎉 Get Airdrop & Reward Upto 200 Sol  🎉 <span>Simply Holding IBCM upto 30 days</span></h3>
+         <img src="https://i.ibb.co/sJR49PPX/Bull.png" alt="IBCM Logo" />
+        <a href="https://pump.fun/coin/AmjcRH341ppCZmCzvdHVf3z1NwL3pAAKvqJGPHbLJKRf" target="_blank">Hold IBCM up to 30 days on Pump Fun</a>
+        <p>Get Rewards 🎉🎉 Upto 200 Sol</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CHART WIDGET SECTION -->
+  <section class="chart-section">
+   
+    <h2 class="section-title"> IBCM Live Marketcap </h2>
+    <div id="price-chart-widget-container"></div>
+    <script type="text/javascript">
+      (function() {
+        function loadWidget() {
+          if (typeof window.createMyWidget === 'function') {
+            window.createMyWidget('price-chart-widget-container', {
+              autoSize: true,
+              chainId: 'solana',
+              tokenAddress: 'AmjcRH341ppCZmCzvdHVf3z1NwL3pAAKvqJGPHbLJKRf',
+              showHoldersChart: true,
+              defaultInterval: '1D',
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone ?? 'Etc/UTC',
+              theme: 'moralis',
+              locale: 'en',
+              backgroundColor: '#0d2035',
+              gridColor: '#0d2035',
+              textColor: '#f5a623',
+              candleUpColor: '#4CE666',
+              candleDownColor: '#E64C4C',
+              hideLeftToolbar: false,
+              hideTopToolbar: false,
+              hideBottomToolbar: false
+            });
+          } else {
+            console.error('createMyWidget function is not defined.');
+          }
+        }
+
+        if (!document.getElementById('moralis-chart-widget')) {
+          var script = document.createElement('script');
+          script.id = 'moralis-chart-widget';
+          script.src = 'https://moralis.com/static/embed/chart.js';
+          script.type = 'text/javascript';
+          script.async = true;
+          script.onload = loadWidget;
+          document.body.appendChild(script);
+        } else {
+          loadWidget();
+        }
+      })();
+    </script>
+  </section>
+  <!-- END CHART WIDGET SECTION -->
+<section id="docs">
+    <h2 class="section-title">🏢 Documentation</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>CCUniverse Introduction</h3>
+        <a href="https://coolcriminal-universe.gitbook.io/ccuniverse/" target="_blank">Explore the Docs</a>
+      </div>
+      <div class="card">
+        <h3>Official Docx</h3>
+        <a href="https://coolcriminal-universe.gitbook.io/ccuniverse/" target="_blank">Read Official Documentation</a>
+      </div>
+      <div class="card">
+        <h3>Project Updates</h3>
+        <a href="https://github.com/users/ccuniverse2/projects/1" target="_blank">GitHub Project Board</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">🛠️ Technical Protocol</h2>
+    <div class="section-sub">Languages & Tech: <span class="highlight">Rust</span>, <span class="highlight">Solidity</span>, <span class="highlight">Next.js</span>, <span class="highlight">Node.js</span>, <span class="highlight">React.js</span>, <span class="highlight">Angular.js</span>, <span class="highlight">Anchor</span>, <span class="highlight">Cargo</span>, <span class="highlight">REST API</span></div>
+    <div class="section-sub">Our Services: NFT Marketplace, Smart Contract, Audit, Security, DeFi, Dapp, Digital Art, Unique Collections</div>
+  </section>
+
+  <section id="nfts">
+    <h2 class="section-title">🌐 NFTs Collections Links 💃🕺</h2>
+    <ul class="nft-links">
+      <li><b>NanSwap:</b> <a href="https://nanswap.com/art/collection/boH7EbKiM96?accessURL=boH7EbKiM96&minPrice=&maxPrice=" target="_blank">NANO Chain</a></li>
+      <li><b>OpenSea:</b> <a href="https://opensea.io/collection/coolcriminals-universe-headquarter" target="_blank">Opensea Collection</a></li>
+      <li><b>CoolCriminals All Collections:</b> <a href="https://opensea.io/0x0733255e68b25502f0866cd9785d892fbc20e75a" target="_blank">CoolCriminals on Opensea</a></li>
+      <li><b>CCUniverse:</b> <a href="https://www.coolcriminal.space/" target="_blank">CoolCriminalUniverse Official</a></li>
+    </ul>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <h2 class="section-title" style="margin-bottom:0.5em;">🤩 About</h2>
+      <p><b>CoolCriminalUniverse</b> brings you the coolest, most unique, and criminally creative NFT collections.<br>
+      Dive into our world of IDOs, ICOs, and MEME tokens—where art, tech, and community collide in a celebration of innovation and fun!<br><br>
+      💃🕺 Let’s laugh, celebrate, and party as we revolutionize the NFT ecosystem together! 🎉</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">🌐 Social / Official Links</h2>
+    <ul class="social-links">
+      <li><b>Twitter:</b>
+        <a href="https://x.com/anai_service" target="_blank">@anai_service</a>,
+        <a href="https://x.com/ccuniverse_v2" target="_blank">@ccuniverse_v2</a>
+      </li>
+      <li><b>OpenSea:</b> <a href="https://opensea.io/CoolCriminals" target="_blank">CoolCriminals</a></li>
+      <li><b>NanSwap:</b> <a href="https://nanswap.com/art/collection/boH7EbKiM96?status=listed&sort=askLowToHigh&accessURL=boH7EbKiM96&minPrice=&maxPrice=" target="_blank">CoolCriminals on NanSwap</a></li>
+      <li><b>CCUniverse:</b> <a href="https://www.coolcriminal.space/" target="_blank">CoolCriminalUniverse Official</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">🏷️ Hashtags & Vibes</h2>
+    <div class="hashtags">
+      <code>#coolcriminals</code> <code>#opensea</code> <code>#solana</code> <code>#MEME</code> <code>#NFTs</code> <code>#EcoSystem</code>
+    </div>
+    <div class="vibes">🕶️😂🎉💃🕺🎨</div>
+    <img class="banner-img" src="https://i.ibb.co/yc9DbXN1/CCU-HQ-003.png" alt="Cool Criminals NFT Banner" />
+  </section>
+
+  <section>
+    <details>
+      <summary><b>Want to collaborate? Let’s connect!</b></summary>
+      <p>DM on Twitter or explore the links above to join the party! 🥳</p>
+    </details>
+  </section>
+
+  <section>
+    <div class="donate">
+      <h2 class="section-title" style="margin-bottom:0.2em;">Support & Donation</h2>
+      <div>
+        <b>The SAGA series of CoolCriminal Universe will launch soon!</b>
+        <br>Your support means a lot to us as we work hard to bring this project to life.<br>
+        <br>If you want to support our upcoming project and help us build an even better experience, donations are greatly appreciated!<br><b>Every contribution helps us move forward and shows us that you believe in what we're creating.</b>
+      </div>
+      <div class="donate-addresses">
+        <div>
+          <span>Solana</span>
+          <code>2rngiVRtprH3GhFZ5ck1hCfozeMGA9ABhiECq2hnT7hU</code>
+        </div>
+        <div>
+          <span>Ethereum (ETH)</span>
+          <code>0x02a7f1D0e793079392dceDE497555F83a50d9BA7</code>
+        </div>
+        <div>
+          <span>BASE</span>
+          <code>0x02a7f1D0e793079392dceDE497555F83a50d9BA7</code>
+        </div>
+        <div>
+          <span>SUI</span>
+          <code>0x9c27afe7f5136ad95d40952155ebb8c57d04a795c1b66644d2f29d41697d6990</code>
+        </div>
+        <div>
+          <span>Polygon</span>
+          <code>0x02a7f1D0e793079392dceDE497555F83a50d9BA7</code>
+        </div>
+        <div>
+          <span>Bitcoin</span>
+          <code>bc1qw8jpkx35hsdra8yg3qcks2j4xllnc3lwgt2yx0</code>
+        </div>
+      </div>
+    </div>
+    <div class="thanks">
+      <p>Your generosity and encouragement inspire us to keep building and innovating. Thank you for being a part of our journey!</p>
+      <p>Stay tuned — <b>the SAGA series of CoolCriminal Universe is coming soon!</b></p>
+    </div>
+    <img class="typing-svg" src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=30&pause=1000&color=F7931A&center=true&width=700&lines=Stay+Cool+%F0%9F%95%B6%EF%B8%8F;Keep+Collecting+%F0%9F%8E%89;Party+with+the+Coolest+NFTs!+%F0%9F%8E%B6" alt="Typing SVG" />
+  </section>
+
+  <footer>
+    Join the referral & airdrop, drop your Solana Address on<span></span> <a href="https://x.com/ccuniverse_v2" target="_blank">Twitter/X</a> </span> on 1st pinned post's comment ⭐ and get Airdrops and win SOL !
+  </footer>
+</body>
+</html>
